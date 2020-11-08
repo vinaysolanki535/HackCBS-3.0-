@@ -1,4 +1,6 @@
-import 'package:trooper_hackout/news_resource/ModelYoutube/video_model.dart';
+
+
+import 'package:hackcbs_farming_app/news_resource/ModelYoutube/video_model.dart';
 
 class Channel {
   final String id;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:trooper_hackout/news_resource/helper/news.dart';
-import 'package:trooper_hackout/news_resource/helper/widget.dart';
+import 'package:hackcbs_farming_app/news_resource/helper/news.dart';
+import 'package:hackcbs_farming_app/news_resource/helper/widget.dart';
+
 
 class CategoryNews extends StatefulWidget {
   final String newsCategory;

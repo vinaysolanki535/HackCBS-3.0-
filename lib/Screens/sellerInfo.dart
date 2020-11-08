@@ -1,16 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:trooper_hackout/resources/color.dart';
-import 'package:trooper_hackout/widgets/app_bar.dart';
-import 'package:trooper_hackout/widgets/customButton.dart';
-import 'package:trooper_hackout/widgets/custom_text.dart';
-import 'package:trooper_hackout/widgets/heading_text.dart';
 import 'package:flutter_sms/flutter_sms.dart';
+import 'package:hackcbs_farming_app/database/auth.dart';
+import 'package:hackcbs_farming_app/resources/color.dart';
+import 'package:hackcbs_farming_app/video_call/pages/index.dart';
+import 'package:hackcbs_farming_app/widgets/app_bar.dart';
+import 'package:hackcbs_farming_app/widgets/customButton.dart';
+import 'package:hackcbs_farming_app/widgets/custom_text.dart';
+import 'package:hackcbs_farming_app/widgets/heading_text.dart';
+
+import 'buy_product.dart';
 
 
 class SellerInfo extends StatefulWidget {
-  final sellerId,photo, address, state, district, sellerName, price, quantity,itemName;
-  SellerInfo({this.sellerId,this.price,this.itemName,this.photo,this.quantity,this.sellerName,this.state,this.district,this.address});
+  final sellerId,photo, address, state, district, sellerName, price, quantity,itemName,sellerTokenId,documentId;
+  SellerInfo({this.sellerId,this.price,this.itemName,this.photo,this.quantity,this.sellerName,this.state,this.district,this.documentId
+    ,this.address,this.sellerTokenId});
+
+
   @override
   _SellerInfoState createState() => _SellerInfoState();
 }
@@ -27,6 +36,96 @@ class _SellerInfoState extends State<SellerInfo> {
     print(_result);
   }
 
+  initState() {
+    super.initState();
+    getUserId();
+  }
+
+  String userId = '';
+  String userName = '';
+  String token = '';
+
+  Firestore _firestore = Firestore.instance;
+
+  getUserId() async{
+     await AuthService.getUserIdSharedPref().then((value) {
+       setState(() {
+         userId = value;
+       });
+     });
+
+     await AuthService.getUserNameSharePref().then((value) {
+        setState(() {
+          userName = value;
+        });
+     });
+
+     await AuthService.getUserDeviceToken().then((value) {
+       setState(() {
+         token = value;
+       });
+     });
+
+  }
+
+  bool clickedVideoCall = false;
+
+
+  _videoCall() async{
+
+    setState(() {
+      clickedVideoCall = true;
+    });
+
+    await _firestore.collection("VideoCall").document().setData({
+
+      "status" : "online",
+      "timeStamp" : Timestamp.now(),
+      "callerId" : userId,
+      "receiverId": widget.sellerId,
+      "callerName" : userName,
+      "receiverName" : widget.sellerName,
+      "senderTokenId" : token,
+      "receiverTokenId" : widget.sellerTokenId,
+
+
+    });
+
+    setState(() {
+      clickedVideoCall = false;
+    });
+
+
+     Navigator.push(context, MaterialPageRoute(
+         builder : (context) => IndexPage(
+           sellerId : widget.sellerId,
+           sellerName: widget.sellerName,
+           userId : userId,
+           userName : userName,
+           documentId: widget.documentId,
+
+         )
+     ));
+  }
+
+
+  buyProduct(){
+
+    Navigator.push(context, MaterialPageRoute(
+
+      builder: (context) => BuyProduct(
+        sellerId : widget.sellerId,
+        sellerName: widget.sellerName,
+        userId : userId,
+        userName : userName,
+        documentId: widget.documentId,
+        itemName: widget.itemName,
+        itemPrice: widget.price,
+      ),
+
+    ));
+
+  }
 
   //listcard widget
   Widget ListCard({dynamic commodityName,
@@ -204,30 +303,28 @@ class _SellerInfoState extends State<SellerInfo> {
               CustomButton(
                 label: "BUY",
                 labelColor: white,
-                onPressed: (){},
+                onPressed: (){
+                  buyProduct();
+                },
                 color: secondary,
               ),
 
               SizedBox(height: 10,),
 
-              CustomButton(
+              clickedVideoCall == false ? CustomButton(
                 label: "Video Call",
                 labelColor: white,
-                onPressed: (){},
+                onPressed: (){
+                  _videoCall();
+                },
                 color: secondary,
+              ) : Center(
+                child: CircularProgressIndicator(),
               ),
 
               SizedBox(height: 10,),
 
 
-              CustomButton(
-                label: "Voice Call",
-                labelColor: white,
-                onPressed: (){},
-                color: secondary,
-              ),
-
-              SizedBox(height: 10,),
 
               CustomButton(
                 label: "Message",

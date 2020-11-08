@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:trooper_hackout/resources/color.dart';
+import 'package:hackcbs_farming_app/resources/color.dart';
+
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoScreen extends StatefulWidget {

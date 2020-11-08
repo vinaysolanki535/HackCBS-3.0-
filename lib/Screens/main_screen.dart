@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:trooper_hackout/Buy_sell.dart';
-import 'package:trooper_hackout/Market.dart';
-import 'package:trooper_hackout/Screens/NewsScreen.dart';
-import 'package:trooper_hackout/Screens/WeatherScreen.dart';
-import 'package:trooper_hackout/Screens/buy_screen.dart';
-import 'package:trooper_hackout/Screens/sell_screen.dart';
-import 'package:trooper_hackout/Screens/tlight.dart';
-import 'package:trooper_hackout/acount.dart';
-import 'package:trooper_hackout/crop_virus.dart';
-import 'package:trooper_hackout/news_resource/helper/news.dart';
-import 'package:trooper_hackout/resources/color.dart';
+import 'package:hackcbs_farming_app/Screens/NewsScreen.dart';
+import 'package:hackcbs_farming_app/Screens/WeatherScreen.dart';
+import 'package:hackcbs_farming_app/Screens/tlight.dart';
+import 'package:hackcbs_farming_app/crop_virus.dart';
+import 'package:hackcbs_farming_app/resources/color.dart';
 import 'package:keyboard_visibility/keyboard_visibility.dart';
+import 'package:tflite/tflite.dart';
+import 'file:///F:/tropper/lib/Screens/Market.dart';
 
+
+
+import 'Buy_sell.dart';
+import 'buy_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -27,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> screens = [
     NewsScreen(),
     Market(),
-    Tlight(),
+    CropVirus(),
     WeatherScreen()
   ]; // to store nested tabs
   final PageStorageBucket bucket = PageStorageBucket();
@@ -58,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
         onPressed: () {
           setState(() {
-            currentScreen = BuyScreen();
+            currentScreen = BuySell();
           });
         },
       ),
@@ -82,7 +82,7 @@ class _MainScreenState extends State<MainScreen> {
                     onPressed: () {
                       setState(() {
                         currentScreen =
-                            NewsScreen();
+                            NewsScreen(); // if user taps on this dashboard tab will be active
                         currentTab = 0;
                       });
                     },
@@ -107,7 +107,7 @@ class _MainScreenState extends State<MainScreen> {
                     onPressed: () {
                       setState(() {
                         currentScreen =
-                          Market();
+                          Market(); // if user taps on this dashboard tab will be active
                         currentTab = 1;
                       });
                     },
@@ -139,8 +139,8 @@ class _MainScreenState extends State<MainScreen> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
-                        currentScreen =
-                            Tlight();
+                        currentScreen =  Tlight();
+                             // if user taps on this dashboard tab will be active
                         currentTab = 2;
                       });
                     },
@@ -165,7 +165,7 @@ class _MainScreenState extends State<MainScreen> {
                     onPressed: () {
                       setState(() {
                         currentScreen =
-                            WeatherScreen();
+                            WeatherScreen(); // if user taps on this dashboard tab will be active
                         currentTab = 3;
                       });
                     },
@@ -173,7 +173,7 @@ class _MainScreenState extends State<MainScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(
-                          Icons.terrain,
+                          Icons.person_rounded,
                           color: currentTab == 3 ? primary : Colors.grey,
                         ),
                         Text(
@@ -192,7 +192,6 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
       ),
-
     );
   }
 }

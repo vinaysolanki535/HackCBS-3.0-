@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:trooper_hackout/Screens/main_screen.dart';
-import 'package:trooper_hackout/database/auth.dart';
-import 'package:trooper_hackout/resources/color.dart';
-import 'package:trooper_hackout/widgets/customButton.dart';
-import 'package:trooper_hackout/widgets/textField.dart';
+import 'package:hackcbs_farming_app/database/auth.dart';
+import 'package:hackcbs_farming_app/resources/color.dart';
+import 'package:hackcbs_farming_app/widgets/customButton.dart';
+import 'package:hackcbs_farming_app/widgets/textField.dart';
+
+import 'main_screen.dart';
 
 class SignUpForm extends StatefulWidget {
 
@@ -29,6 +30,21 @@ class _SignUpFormState extends State<SignUpForm> {
 
   bool clicked = false;
 
+  String token = '';
+
+  initState(){
+    super.initState();
+    getDeviceToken();
+  }
+
+  getDeviceToken() async{
+    await AuthService.getUserDeviceToken().then((value){
+      setState(() {
+        token = value;
+      });
+    });
+  }
+
 
   submitToDatabase() async{
 
@@ -43,6 +59,7 @@ class _SignUpFormState extends State<SignUpForm> {
      "district" : districtController.text,
      "state" : stateController.text,
      "phone" : widget.phone,
+       "token" : token,
 
      });
 

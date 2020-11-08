@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:trooper_hackout/Screens/NavDrawer.dart';
-import 'package:trooper_hackout/Screens/sellerInfo.dart';
-import 'package:trooper_hackout/resources/color.dart';
-import 'package:trooper_hackout/widgets/app_bar.dart';
-import 'package:trooper_hackout/widgets/customButton.dart';
-import 'package:trooper_hackout/widgets/custom_text.dart';
-import 'package:trooper_hackout/widgets/textField.dart';
+import 'package:hackcbs_farming_app/Screens/NavDrawer.dart';
+import 'package:hackcbs_farming_app/Screens/sellerInfo.dart';
+import 'package:hackcbs_farming_app/resources/color.dart';
+import 'package:hackcbs_farming_app/widgets/customButton.dart';
+import 'package:hackcbs_farming_app/widgets/custom_text.dart';
+import 'package:hackcbs_farming_app/widgets/textField.dart';
+
 
 class BuyScreen extends StatefulWidget {
   @override
@@ -151,7 +151,7 @@ class _BuyScreenState extends State<BuyScreen> {
     return Scaffold(
       drawer: NavDrawer(),
      appBar: AppBar(
-       title: clickedSearch == false ?  Text("What do you want to buy") :
+       title: clickedSearch == false ?  Text("What do you want to buy" , style: TextStyle(color: Colors.white),) :
        CustomTextField(
          label : "Search",
          controller: searchedText,
@@ -159,7 +159,7 @@ class _BuyScreenState extends State<BuyScreen> {
        centerTitle: true,
        actions: [
          IconButton(
-           icon: Icon(Icons.search),
+           icon: Icon(Icons.search , color: Colors.white,),
            onPressed: (){
              setState(() {
                clickedSearch = !clickedSearch;
@@ -199,6 +199,7 @@ class _BuyScreenState extends State<BuyScreen> {
                          state: doc['state'],
                          photo: doc['photo'],
                          price: doc['price'],
+                         documentId: doc.documentID,
                        ),
                      ));
                    }
@@ -220,6 +221,8 @@ class _BuyScreenState extends State<BuyScreen> {
                           state: doc['state'],
                           photo: doc['photo'],
                           price: doc['price'],
+                          sellerTokenId: doc['token'],
+                          documentId: doc.documentID,
                         ),
                     ));
                  }

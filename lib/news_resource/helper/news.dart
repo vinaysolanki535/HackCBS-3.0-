@@ -1,6 +1,7 @@
+import 'package:hackcbs_farming_app/news_resource/models/article.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:trooper_hackout/news_resource/models/article.dart';
+
 
 import '../secret.dart';
 

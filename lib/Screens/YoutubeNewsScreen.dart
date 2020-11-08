@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:trooper_hackout/news_resource/ModelYoutube/api_services.dart';
-import 'package:trooper_hackout/news_resource/ModelYoutube/channel_model.dart';
-import 'package:trooper_hackout/news_resource/ModelYoutube/video_model.dart';
-import 'package:trooper_hackout/news_resource/ModelYoutube/video_screen.dart';
-import 'package:trooper_hackout/resources/color.dart';
+import 'package:hackcbs_farming_app/news_resource/ModelYoutube/api_services.dart';
+import 'package:hackcbs_farming_app/news_resource/ModelYoutube/channel_model.dart';
+import 'package:hackcbs_farming_app/news_resource/ModelYoutube/video_model.dart';
+import 'package:hackcbs_farming_app/news_resource/ModelYoutube/video_screen.dart';
+import 'package:hackcbs_farming_app/resources/color.dart';
+
 
 class YoutubeNewsScreen extends StatefulWidget {
   @override

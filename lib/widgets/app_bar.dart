@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:trooper_hackout/resources/color.dart';
+import 'package:hackcbs_farming_app/resources/color.dart';
 
-Widget appbar ({String title , dynamic widget}) {
+
+Widget appbar ({String title , dynamic widget,dynamic onPressed}) {
   return AppBar(
 
     backgroundColor: primary,
        iconTheme: IconThemeData(
-         color: black,
+         color: Colors.white,
        ),
        leading: widget,
        title: Center(
            child: Text(
            "$title",
              style: TextStyle(
-               color: Colors.black
+               color: Colors.white
              ),
           ),
         ),
        actions: [
-          Icon(Icons.notifications , color: Colors.black,),
+          IconButton(
+            onPressed: (){
+              onPressed();
+            },
+            icon : Icon(Icons.notifications) ,
+            color: Colors.white,
+          ),
           SizedBox(width: 15,)
         ],
         elevation: 0.0,

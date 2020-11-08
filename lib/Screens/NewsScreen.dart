@@ -1,16 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hackcbs_farming_app/Screens/NavDrawer.dart';
+import 'package:hackcbs_farming_app/database/auth.dart';
+import 'package:hackcbs_farming_app/news_resource/helper/data.dart';
+import 'package:hackcbs_farming_app/news_resource/helper/news.dart';
+import 'package:hackcbs_farming_app/news_resource/helper/widget.dart';
+import 'package:hackcbs_farming_app/news_resource/models/categorie_model.dart';
+import 'package:hackcbs_farming_app/news_resource/models/categorie_news.dart';
+import 'package:hackcbs_farming_app/widgets/app_bar.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:trooper_hackout/Screens/NavDrawer.dart';
-import 'package:trooper_hackout/Screens/YoutubeNewsScreen.dart';
-import 'package:trooper_hackout/news_resource/helper/data.dart';
-import 'package:trooper_hackout/news_resource/helper/news.dart';
-import 'package:trooper_hackout/news_resource/helper/widget.dart';
-import 'package:trooper_hackout/news_resource/models/categorie_model.dart';
-import 'package:trooper_hackout/news_resource/models/categorie_news.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:trooper_hackout/resources/color.dart';
-import 'package:trooper_hackout/widgets/app_bar.dart';
+
+
+import 'YoutubeNewsScreen.dart';
+import 'notification_screen.dart';
 
 class NewsScreen extends StatefulWidget {
   @override
@@ -39,6 +42,16 @@ class _NewsScreenState extends State<NewsScreen> {
 
     categories = getCategories();
     getNews();
+    getUserId();
+  }
+
+  String userId = '';
+  getUserId() async{
+    await AuthService.getUserIdSharedPref().then((value)  {
+       setState(() {
+         userId = value;
+       });
+    });
   }
 
   @override
@@ -47,6 +60,12 @@ class _NewsScreenState extends State<NewsScreen> {
       drawer: NavDrawer(),
       appBar: appbar(
           title: ("Agriculture News"),
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) => NotificationScreen()
+            ));
+          }
+
           ),
       body: SafeArea(
         child: _loading
@@ -57,6 +76,9 @@ class _NewsScreenState extends State<NewsScreen> {
                 child: Container(
                   child: Column(
                     children: <Widget>[
+
+
+
                       /// Categories
                       Container(
                         margin: EdgeInsets.only(top: 20),

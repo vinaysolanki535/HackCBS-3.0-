@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:trooper_hackout/Screens/NavDrawer.dart';
-import 'package:trooper_hackout/resources/color.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hackcbs_farming_app/resources/location.dart';
+import 'package:hackcbs_farming_app/resources/networking.dart';
+import 'package:hackcbs_farming_app/resources/weather_secret.dart';
+import 'package:hackcbs_farming_app/widgets/app_bar.dart';
 import 'package:http/http.dart' as http;
-import 'package:trooper_hackout/resources/location.dart';
-import 'package:trooper_hackout/resources/networking.dart';
-import 'package:trooper_hackout/resources/weather_secret.dart';
+
 import 'package:geolocator/geolocator.dart';
 import 'dart:convert';
 
-import 'package:trooper_hackout/widgets/app_bar.dart';
+import 'NavDrawer.dart';
+
+
 
 class WeatherScreen extends StatefulWidget {
   @override
@@ -60,9 +63,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
       body: Column(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height / 3,
+            height: MediaQuery.of(context).size.height / 4,
             width: MediaQuery.of(context).size.width,
-            color: Color(0xffc2b98a),
+            color: Color(0xff718f47),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -77,7 +80,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         ? "Currently in " + name.toString()
                         : "Loading",
                     style: TextStyle(
-                      color: secondary,
+                      color: Color(0xff89cf27),
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
                     ),
@@ -96,7 +99,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   child: Text(
                     cuurently != null ? cuurently.toString() : "Loading",
                     style: TextStyle(
-                      color: secondary,
+                      color: Color(0xff89cf27),
                       fontSize: 16.0,
                       fontWeight: FontWeight.w600,
                     ),
@@ -137,6 +140,208 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       windspeed != null
                           ? windspeed.toString() + "\u00B0"
                           : "Loading",
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(bottom: 40.0),
+            child: Container(
+              height: 100,
+              padding: EdgeInsets.all(10.0),
+              child: ListView(
+                // This next line does the trick.
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  Container(
+                    width: 90.0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Mon, Nov 9',
+                          style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: 13,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        FaIcon(
+                          FontAwesomeIcons.solidSun,
+                          color: Colors.black38,
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text('29° / 14°')
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 90.0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Tue, Nov 10',
+                          style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: 13,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        FaIcon(
+                          FontAwesomeIcons.solidSun,
+                          color: Colors.black38,
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text('29° / 14°')
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 90.0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Wed, Nov 11',
+                          style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: 13,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        FaIcon(
+                          FontAwesomeIcons.solidSun,
+                          color: Colors.black38,
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text('29° / 14°')
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 90.0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Thu, Nov 12',
+                          style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: 13,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        FaIcon(
+                          FontAwesomeIcons.solidSun,
+                          color: Colors.black38,
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text('28° / 15°')
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 90.0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Fri, Nov 13',
+                          style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: 13,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        FaIcon(
+                          FontAwesomeIcons.solidSun,
+                          color: Colors.black38,
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text('29° / 15°')
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 90.0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Sat, Nov 14',
+                          style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: 13,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        FaIcon(
+                          FontAwesomeIcons.solidSun,
+                          color: Colors.black38,
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text('31° / 16°')
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 90.0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Sun, Nov 15  ',
+                          style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: 13,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        FaIcon(
+                          FontAwesomeIcons.solidSun,
+                          color: Colors.black38,
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text('32° / 17°')
+                      ],
                     ),
                   ),
                 ],

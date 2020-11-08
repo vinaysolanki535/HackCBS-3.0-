@@ -1,4 +1,6 @@
-import 'package:trooper_hackout/news_resource/models/categorie_model.dart';
+
+
+import 'package:hackcbs_farming_app/news_resource/models/categorie_model.dart';
 
 List<CategorieModel> getCategories() {
   List<CategorieModel> myCategories = List<CategorieModel>();
@@ -16,6 +18,12 @@ List<CategorieModel> getCategories() {
   categorieModel.categorieName = "Videos";
   categorieModel.imageAssetUrl =
       "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80";
+  myCategories.add(categorieModel);
+
+  categorieModel = new CategorieModel();
+  categorieModel.categorieName = "Innovation";
+  categorieModel.imageAssetUrl =
+      "https://images.unsplash.com/photo-1506092490682-b2cc6b651308?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80";
   myCategories.add(categorieModel);
 
   return myCategories;
